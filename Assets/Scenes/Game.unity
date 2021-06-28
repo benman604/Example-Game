@@ -1223,4 +1223,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 1917958134}
-  speed: 100
+  speed: 20
