@@ -38,5 +38,21 @@ public class PlayerMovement : MonoBehaviour
                 gravity = jumpHeight;
             }
         }
+        else
+        {
+            transform.parent = null;
+        }
+    }
+
+    private void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        if(hit.gameObject.tag == "MovingPlatform")
+        {
+            transform.parent = hit.transform;
+        }
+        else
+        {
+            transform.parent = null;
+        }
     }
 }
