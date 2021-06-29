@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerDeath : MonoBehaviour
 {
     GameObject currentCheckpoint;
+    public float life = 100;
 
     private void OnControllerColliderHit(ControllerColliderHit hit)
     {
@@ -16,11 +17,25 @@ public class PlayerDeath : MonoBehaviour
         {
             Die();
         }
+
+        if(hit.gameObject.name == "EnemyBullet")
+        {
+            life -= 20;
+        }
     }
 
     void Die()
     {
+        life = 100;
         Vector3 respawnPos = currentCheckpoint.transform.GetChild(0).transform.position;
         transform.position = respawnPos;
+    }
+
+    private void Update()
+    {
+        if(life <= 0)
+        {
+            Die();
+        }
     }
 }

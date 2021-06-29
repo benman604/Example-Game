@@ -8,6 +8,8 @@ public class EnemyMovement : MonoBehaviour
     public float moveSpeed = 1;
     public GameObject player;
     public CharacterController controller;
+
+    public float life = 100;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,6 +27,19 @@ public class EnemyMovement : MonoBehaviour
 
             Vector3 direction = Quaternion.AngleAxis(-90, Vector3.up) * transform.forward;
             controller.Move(direction * moveSpeed * Time.deltaTime);
+        }
+
+        if(life <= 0)
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    private void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        if(hit.gameObject.name == "PlayerBullet")
+        {
+            life -= 20;
         }
     }
 }
